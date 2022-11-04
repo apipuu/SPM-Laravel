@@ -134,4 +134,14 @@ class BukuController extends Controller
         return redirect()->route('buku.index')
             ->with('success_message', 'Berhasil menghapus data buku');
     }
+
+    public function document (){
+        $data_buku = Buku::all();
+        $mpdf = new \Mpdf\Mpdf(['orientation' => 'L']);
+        // $html ="";
+        $html = view('buku/cetakdatabuku',compact('buku'));
+        // $html=$html->render();
+        $mpdf ->writeHTML($html);
+        $mpdf -> Output("Data Buku.pdf","I");
+    }
 }

@@ -37,3 +37,5 @@ Route::resource('data_keanggotaan', \App\Http\Controllers\data_keanggotaan_contr
 Route::resource('buku', \App\Http\Controllers\BukuController::class)
     ->middleware('auth');
 
+Route::get('buku/cetakdatabuku', [App\Http\Controllers\BukuController::class, 'document']);    
+

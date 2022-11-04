@@ -16,6 +16,10 @@
                         Tambah
                     </a>
 
+                    <a href="buku/cetakdatabuku" class="btn btn-primary mb-2" target="_blank">
+                        Cetak Data
+                    </a>
+
                     <table class="table table-hover table-bordered table-stripped" id="example2">
                         <thead>
                         <tr>

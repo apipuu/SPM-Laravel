@@ -292,15 +292,16 @@ return [
     'menu' => [
         // Navbar items:
          [
-        'text' => 'User',
-        'url'  => '/users',
-        'icon'  => 'fa fa-users',
-        ],
-         [
         'text' => 'Data Anggota',
         'url'  => '/data_keanggotaan',
         'icon'  => 'fa fa-users',
         ],
+
+        [
+            'text' => 'Data Buku',
+            'url'  => '/buku',
+            'icon'  => 'fa fa-book',
+            ],
 
         // Sidebar items:
         
