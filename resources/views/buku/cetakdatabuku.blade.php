@@ -34,7 +34,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($buku as $key => $buku)
+                        @foreach($data_buku as $key => $buku)
                             <tr>
                                 <td>{{$buku->kode_buku}}</td>
                                 <td>{{$buku->nama_buku}}</td>

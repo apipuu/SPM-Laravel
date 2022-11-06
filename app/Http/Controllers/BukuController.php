@@ -12,12 +12,19 @@ class BukuController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $buku = Buku::all();
-        return view('buku.index', [
-            'buku' => $buku
-    ]);
+        if ($request->ajax()) {
+            $buku = Buku::all();
+            return datatables()->of($buku)
+                ->addColumn('action', function ($row) {
+                    $html = '<a href=' . route('buku.edit', $row) . ' class="btn btn-warning btn-xs">Edit</a>';
+                    $html .= '<a href=' . route('buku.destroy', $row) . ' class="btn btn-danger btn-xs" onclick="notificationBeforeDelete(event, this)"> Delete </a>';
+                    return $html;
+                })
+                ->toJson();
+        }
+        return view('buku/index');
     }
 
     /**
@@ -139,7 +146,7 @@ class BukuController extends Controller
         $data_buku = Buku::all();
         $mpdf = new \Mpdf\Mpdf(['orientation' => 'L']);
         // $html ="";
-        $html = view('buku/cetakdatabuku',compact('buku'));
+        $html = view('buku/cetakdatabuku',compact('data_buku'));
         // $html=$html->render();
         $mpdf ->writeHTML($html);
         $mpdf -> Output("Data Buku.pdf","I");

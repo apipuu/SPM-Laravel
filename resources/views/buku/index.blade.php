@@ -32,7 +32,7 @@
                             <th>Status</th>
                         </tr>
                         </thead>
-                        <tbody>
+                        {{-- <tbody>
                         @foreach($buku as $key => $buku)
                             <tr>
                                 <td>{{$buku->kode_buku}}</td>
@@ -53,7 +53,7 @@
                                 </td>
                             </tr>
                         @endforeach
-                        </tbody>
+                        </tbody> --}}
                     </table>
 
                 </div>
@@ -71,7 +71,6 @@
         $('#example2').DataTable({
             "responsive": true,
         });
-
         function notificationBeforeDelete(event, el) {
             event.preventDefault();
             if (confirm('Apakah anda yakin akan menghapus data ? ')) {
@@ -79,6 +78,19 @@
                 $("#delete-form").submit();
             }
         }
-
+        var table = $('#buku').DataTable({
+                    ajax: '',
+                    serverSide: true,
+                    processing: true,
+                    aaSorting:[[0,"desc"]],
+                    columns: [
+                        {data: 'kode_buku', name: 'kode_buku'},
+                        {data: 'jumlah_buku', name: 'jumlah_buku'},
+                        {data: 'penulis', name: 'penulis'},
+                        {data: 'penerbit', name: 'penerbit'},
+                        {data: 'jenis_buku', name: 'jenis_buku'},
+                        {data: 'status', name: 'status'},
+                    ]
+                });
     </script>
 @endpush
