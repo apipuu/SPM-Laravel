@@ -298,10 +298,16 @@ return [
         ],
 
         [
-            'text' => 'Data Buku',
-            'url'  => '/buku',
-            'icon'  => 'fa fa-book',
-            ],
+        'text' => 'Data Buku',
+        'url'  => '/buku',
+        'icon'  => 'fa fa-book',
+        ],
+
+        [
+        'text' => 'Data Laporan',
+        'url'  => '/laporan',
+        'icon'  => 'fa fa-book',
+        ]
 
         // Sidebar items:
         
