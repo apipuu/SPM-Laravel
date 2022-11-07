@@ -40,3 +40,7 @@ Route::post('/store', 'BukuController@store');
 
 Route::get('/create', 'data_keanggotaan_controller@create');
 Route::post('/store', 'data_keanggotaan_controller@store');
+
+Route::get('NoteLog', [App\Http\Controllers\Activity_log::class, 'AddToLog']);
+Route::get('logActivity', 'HomeController@logActivity');
+
