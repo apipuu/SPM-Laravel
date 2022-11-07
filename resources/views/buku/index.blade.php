@@ -20,7 +20,7 @@
                         Cetak Data
                     </a>
 
-                    <table class="table table-hover table-bordered table-stripped" id="example2">
+                    <table class="table table-hover table-bordered table-stripped" id="buku">
                         <thead>
                         <tr>
                             <th>Kode Buku</th>
@@ -30,30 +30,10 @@
                             <th>Penerbit</th>
                             <th>Jenis Buku</th>
                             <th>Status</th>
+                            <th>Opsi</th>
                         </tr>
                         </thead>
-                        {{-- <tbody>
-                        @foreach($buku as $key => $buku)
-                            <tr>
-                                <td>{{$buku->kode_buku}}</td>
-                                <td>{{$buku->nama_buku}}</td>
-                                <td>{{$buku->jumlah_buku}}</td>
-                                <td>{{$buku->penulis}}</td>
-                                <td>{{$buku->penerbit}}</td>
-                                <td>{{$buku->jenis_buku}}</td>
-                                <td>{{$buku->status}}</td>
 
-                                <td>
-                                    <a href="{{route('buku.edit', $buku)}}" class="btn btn-primary btn-xs">
-                                        Edit
-                                    </a>
-                                    <a href="{{route('buku.destroy', $buku)}}" onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
-                                        Delete
-                                    </a>
-                                </td>
-                            </tr>
-                        @endforeach
-                        </tbody> --}}
                     </table>
 
                 </div>
@@ -84,12 +64,15 @@
                     processing: true,
                     aaSorting:[[0,"desc"]],
                     columns: [
+
                         {data: 'kode_buku', name: 'kode_buku'},
+                        {data: 'nama_buku', name: 'nama_buku'},
                         {data: 'jumlah_buku', name: 'jumlah_buku'},
                         {data: 'penulis', name: 'penulis'},
                         {data: 'penerbit', name: 'penerbit'},
                         {data: 'jenis_buku', name: 'jenis_buku'},
                         {data: 'status', name: 'status'},
+                        {data: 'action', name: 'action'},
                     ]
                 });
     </script>
