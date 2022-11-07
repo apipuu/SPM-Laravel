@@ -22,7 +22,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        log::info("done");
+        log::info("Akses Halaman Dashboard");
         return view('home');
     }
 }

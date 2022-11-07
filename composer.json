@@ -15,6 +15,7 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.4",
         "mpdf/mpdf": "*",
+        "yajra/laravel-datatables": "*",
         "yajra/laravel-datatables-oracle": "*"
     },
     "require-dev": {

@@ -30,7 +30,7 @@ Route::resource('users', \App\Http\Controllers\UserController::class)
 
 
 Route::get('data_keanggotaan/cetakdatakeanggotaan', [App\Http\Controllers\data_keanggotaan_controller::class, 'document']);
-Route::resource('data_keanggotaan', \App\Http\Controllers\data_keanggotaan_controller::class)
+Route::resource('data_keanggotaan', \App\Http\Controllers\data_keanggotaan_controller::class)->except(['show'])->middleware('auth');
     ;
 Route::get('buku/cetakdatabuku', [App\Http\Controllers\BukuController::class, 'document']);        
 Route::resource('buku', \App\Http\Controllers\BukuController::class)->except(['show'])->middleware('auth');

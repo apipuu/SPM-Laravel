@@ -8,15 +8,20 @@ use Illuminate\Support\Facades\Log;
 
 class data_keanggotaan_controller extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $data_keanggotaan = data_keanggotaan::all();
-        log::info("Akses Halaman Anggota");
-        return view('data_keanggotaan.index', [
-        'data_keanggotaan' => $data_keanggotaan
-        ]);
+        if ($request->ajax()) {
+            $data_keanggotaan = data_keanggotaan::all();
+            return datatables()->of($data_keanggotaan)
+                ->addColumn('action', function ($row) {
+                    $html = '<a href=' . route('data_keanggotaan.edit', $row) . ' class="btn btn-warning btn-xs">Edit</a>';
+                    $html .= '<a href=' . route('buku.destroy', $row) . ' class="btn btn-danger btn-xs" onclick="notificationBeforeDelete(event, this)"> Delete </a>';
+                    return $html;
+                })
+                ->toJson();
+        }
+        return view('data_keanggotaan/index');
     }
-
     /**
      * Show the form for creating a new resource.
      *

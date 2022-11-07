@@ -19,7 +19,7 @@
                         Cetak Data
                     </a>
 
-                    <table class="table table-hover table-bordered table-stripped" id="example2">
+                    <table class="table table-hover table-bordered table-stripped" id="data_keanggotaan">
                         <thead>
                         <tr>
                             <th>No.</th>
@@ -35,30 +35,6 @@
                             <th>Opsi</th>
                         </tr>
                         </thead>
-                        <tbody>
-                        @foreach($data_keanggotaan as $key => $data_keanggotaan)
-                            <tr>
-                                <td>{{$key+1}}</td>
-                                <td>{{$data_keanggotaan->NIK}}</td>
-                                <td>{{$data_keanggotaan->nama_depan}}</td>
-                                <td>{{$data_keanggotaan->nama_belakang}}</td>
-                                <td>{{$data_keanggotaan->pekerjaan}}</td>
-                                <td>{{$data_keanggotaan->tempat_lahir}}</td>
-                                <td>{{$data_keanggotaan->tanggal_lahir}}</td>
-                                <td>{{$data_keanggotaan->alamat}}</td>
-                                <td>{{$data_keanggotaan->no_hp}}</td>
-                                <td>{{$data_keanggotaan->jenis_kelamin}}</td>
-                                <td>
-                                    <a href="{{ route('data_keanggotaan.edit', $data_keanggotaan) }}" class="btn btn-primary btn-xs">
-                                        Edit
-                                    </a>
-                                    <a href="{{ route('data_keanggotaan.destroy', $data_keanggotaan) }}" onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
-                                        Delete
-                                    </a>
-                                </td>
-                            </tr>
-                        @endforeach
-                        </tbody>
                     </table>
 
                 </div>
@@ -84,6 +60,26 @@
                 $("#delete-form").submit();
             }
         }
+
+        var table = $('#data_keanggotaan').DataTable({
+                    ajax: '',
+                    serverSide: true,
+                    processing: true,
+                    aaSorting:[[0,"asc"]],
+                    columns: [
+                        {data: 'id', name: 'id'},
+                        {data: 'NIK', name: 'NIK'},
+                        {data: 'nama_depan', name: 'nama_depan'},
+                        {data: 'nama_belakang', name: 'nama_belakang'},
+                        {data: 'pekerjaan', name: 'pekerjaan'},
+                        {data: 'tempat_lahir', name: 'tempat_lahir'},
+                        {data: 'tanggal_lahir', name: 'tanggal_lahir'},
+                        {data: 'alamat', name: 'alamat'},
+                        {data: 'no_hp', name: 'no_hp'},
+                        {data: 'jenis_kelamin', name: 'jenis_kelamin'},
+                        {data: 'action', name: 'action'},
+                    ]
+                });
 
     </script>
 @endpush
