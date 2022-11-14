@@ -42,25 +42,35 @@ class PeminjamanController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'NIK' => 'required',
-            'kode_buku' => 'required',
-            'nama_buku' => 'required',
-            'status' => 'required'
-        ]);
         $array = $request->only([
             'NIK',
             'kode_buku' ,
             'nama_buku' ,
-            'status' => 'required'
+            'status'
         ]);
-        if (data_keanggotaan::where('NIK', '=', Input::get('NIK'))->exists()) {
-            // user 
+        $dataBuku = Buku::find($request->kode_buku);
+        dd($dataBuku);
+        if ($dataBuku) {
+            if($dataBuku->status != 'Tersedia'){
+                return redirect()->route('data_peminjaman.index')
+                    ->with('error_message', 'Buku sedang tidak tersedia');
+            }
+        }else{
+            return redirect()->route('data_peminjaman.index')
+                    ->with('error_message', 'Buku tidak ada atau kesalahan penginputan kode buku');
         }
+
+        $dataKeanggotaan = data_kanggotaan::find($request->NIK);
+        dd($dataKeanggotaan);
+        if (!$dataKeanggotaan) {
+           return redirect()->route('data_peminjaman.index')
+                    ->with('error_message', 'NIK tidak ada atau Terjadi kesalahan Input');
+        }
+
         $Data_peminjaman = data_peminjaman::create($array);
         
         return redirect()->route('data_peminjaman.index')
-            ->with('success_message', 'Berhasil menambah transaksi');
+            ->with('success_message', 'Peminjaman Berhasil');
     }
 
     /**

@@ -28,10 +28,9 @@ Route::get('/home', function() {
 Route::resource('users', \App\Http\Controllers\UserController::class)
     ;
 
-
+Route::resource('data_peminjaman', \App\Http\Controllers\PeminjamanController::class);
 Route::get('data_keanggotaan/cetakdatakeanggotaan', [App\Http\Controllers\data_keanggotaan_controller::class, 'document']);
-Route::resource('data_keanggotaan', \App\Http\Controllers\data_keanggotaan_controller::class)
-    ;
+Route::resource('data_keanggotaan', \App\Http\Controllers\data_keanggotaan_controller::class);
 Route::get('buku/cetakdatabuku', [App\Http\Controllers\BukuController::class, 'document']);        
 Route::resource('buku', \App\Http\Controllers\BukuController::class)->except(['show'])->middleware('auth');
 
@@ -41,3 +40,5 @@ Route::post('/store', 'BukuController@store');
 Route::get('/create', 'data_keanggotaan_controller@create');
 Route::post('/store', 'data_keanggotaan_controller@store');
 
+// Route::get('/transaksi', [App\Http\Controllers\PeminjamanController::class, 'create']);
+// Route::post('/transaksi/store', [App\Http\Controllers\PeminjamanController::class, 'store']);

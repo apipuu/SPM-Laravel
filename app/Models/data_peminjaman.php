@@ -14,7 +14,13 @@ class data_peminjaman extends Model
     protected $fillable = [
         'NIK',
         'kode_buku',
-        'status',
+        'nama_buku',
+        'status' ,
+    ];
+    protected $attributes = [
+
+        'status' => 'Dipinjam',
+
     ];
 
 }
