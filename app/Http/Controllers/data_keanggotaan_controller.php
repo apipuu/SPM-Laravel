@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\data_keanggotaan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use App\Models\User;
 
 
 class data_keanggotaan_controller extends Controller
