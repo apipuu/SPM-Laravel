@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Laporan;
+use App\Models\data_laporan;
 use Illuminate\Http\Request;
 
 
@@ -12,9 +12,18 @@ class LaporanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if ($request->ajax()) {
+            $laporan = data_laporan::all();
+            return datatables()->of($laporan)
+                ->addColumn('action', function ($row) {
+                    $html = '<a href=' . route('laporan.detail', $row) . ' class="btn btn-primary btn-small">Detail</a>';
+                    return $html;
+                })
+                ->toJson();
+        }
+        return view('laporan/index');
     }
 
     /**
@@ -81,5 +90,15 @@ class LaporanController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function detail($id)
+    {
+        $laporan = data_laporan::find($id);
+        if (!$laporan) return redirect()->route('laporan.index')
+            ->with('error_message', 'Laporan dengan id '.$id.' tidak ditemukan');
+        return view('laporan.detail', [
+            'laporan' => $laporan
+        ]);
     }
 }

@@ -33,12 +33,15 @@ Route::get('data_keanggotaan/cetakdatakeanggotaan', [App\Http\Controllers\data_k
 Route::resource('data_keanggotaan', \App\Http\Controllers\data_keanggotaan_controller::class);
 Route::get('buku/cetakdatabuku', [App\Http\Controllers\BukuController::class, 'document']);        
 Route::resource('buku', \App\Http\Controllers\BukuController::class)->except(['show'])->middleware('auth');
+Route::resource('laporan', \App\Http\Controllers\LaporanController::class)->except(['show'])->middleware('auth');
 
 Route::get('/create', 'BukuController@create');
 Route::post('/store', 'BukuController@store');
 
 Route::get('/create', 'data_keanggotaan_controller@create');
 Route::post('/store', 'data_keanggotaan_controller@store');
+
+Route::get('sending-queue-emails', [App\Http\Controllers\TestQueueEmails::class,'sendTestEmails']);
 
 // Route::get('/transaksi', [App\Http\Controllers\PeminjamanController::class, 'create']);
 // Route::post('/transaksi/store', [App\Http\Controllers\PeminjamanController::class, 'store']);

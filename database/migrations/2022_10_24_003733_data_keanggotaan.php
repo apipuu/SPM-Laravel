@@ -35,6 +35,6 @@ class DataKeanggotaan extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('data_keanggotaan');
     }
 }
