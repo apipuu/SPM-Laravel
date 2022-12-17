@@ -308,10 +308,16 @@ return [
         'url'  => '/laporan',
         'icon'  => 'fa fa-book',
         ],
+
          [
         'text' => 'Data Peminjaman',
         'url'  => '/transaksi',
         'icon'  => 'fa fa-book',
+         ],
+        [
+        'text' => 'Buat Laporan',
+        'url'  => '/pelaporan',
+        'icon'  => 'fa fa-envelope',
         ]
 
         // Sidebar items:

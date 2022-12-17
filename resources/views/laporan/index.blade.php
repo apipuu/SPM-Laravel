@@ -41,7 +41,7 @@
                     aaSorting:[[0,"desc"]],
                     columns: [
 
-                        {data: 'tanggal', name: 'tanggal'},
+                        {data: 'tanggal_dibuat', name: 'tanggal_dibuat'},
                         {data: 'NIK', name: 'NIK'},
                         {data: 'nama', name: 'nama'},
                         {data: 'isi_laporan', name: 'isi_laporan'},

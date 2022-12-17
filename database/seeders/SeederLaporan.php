@@ -17,16 +17,12 @@ class SeederLaporan extends Seeder
     public function run()
     {
  
-    	$faker = Faker::create('id_ID');
-    	for($i = 1; $i <= 11; $i++){
-    		data_laporan::create([
-                'NIK' => $faker->numberBetween(1000000000000000,9999999999999999),
-                'nama'=> $faker->name,
-                'isi_laporan'=> $faker->words(10, true),
-                'tanggal_dibuat' => now()
-    		]);
- 
-    	}
+    	data_laporan::create([
+            'NIK' => 1234567890123456,
+            'nama' => 'aseps',
+            'isi_laporan' => 'Buku beberapa ada yang cacat',
+            'tanggal_dibuat' => now(),
+        ]);
  
     }
 }

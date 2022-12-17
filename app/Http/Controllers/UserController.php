@@ -43,16 +43,17 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+        'NIK' => 'required',
         'name' => 'required',
         'email' => 'required|email|unique:users,email',
         'password' => 'required|confirmed'
         ]);
         $array = $request->only([
-        'name', 'email', 'password'
+        'NIK', 'name', 'email', 'password'
         ]);
         $array['password'] = bcrypt($array['password']);
         $user = User::create($array);
-        $user->assignRole('user');
+        $user->assignRole('pengunjung');
         return redirect()->route('users.index')
         ->with('success_message', 'Berhasil menambah user baru');
     }

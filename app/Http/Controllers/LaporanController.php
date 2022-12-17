@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 use App\Models\data_laporan;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 
 class LaporanController extends Controller
@@ -18,7 +20,7 @@ class LaporanController extends Controller
             $laporan = data_laporan::all();
             return datatables()->of($laporan)
                 ->addColumn('action', function ($row) {
-                    $html = '<a href=' . route('laporan.detail', $row) . ' class="btn btn-primary btn-small">Detail</a>';
+                    $html = '<a href=' . ' class="btn btn-primary btn-small">Detail</a>';
                     return $html;
                 })
                 ->toJson();
@@ -33,7 +35,7 @@ class LaporanController extends Controller
      */
     public function create()
     {
-        //
+        return view('laporan.create');
     }
 
     /**
@@ -44,7 +46,20 @@ class LaporanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $array = $request->only([
+            'NIK',
+            'nama',
+            'isi_laporan',  
+            'tanggal_dibuat',
+        ]);
+
+        $array['NIK'] = DB::table('users')->where('name', $request['nama'])->value('NIK');
+        $array['tanggal_dibuat'] = now();
+
+        $data_laporan = data_laporan::create($array);
+        return redirect()->route('laporan.create')
+            ->with('success_message', 'Berhasil menambah data buku');
+
     }
 
     /**
@@ -90,15 +105,5 @@ class LaporanController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function detail($id)
-    {
-        $laporan = data_laporan::find($id);
-        if (!$laporan) return redirect()->route('laporan.index')
-            ->with('error_message', 'Laporan dengan id '.$id.' tidak ditemukan');
-        return view('laporan.detail', [
-            'laporan' => $laporan
-        ]);
     }
 }

@@ -25,15 +25,20 @@ Route::get('/home', function() {
     return view('home');
 })->name('home');
 
-Route::resource('users', \App\Http\Controllers\UserController::class)
-    ;
+Route::get('/pelaporan', function() {
+    return view('laporan.create');
+})->name('pelaporan');
 
+Route::resource('users', \App\Http\Controllers\UserController::class);
 Route::resource('data_peminjaman', \App\Http\Controllers\PeminjamanController::class);
 Route::get('data_keanggotaan/cetakdatakeanggotaan', [App\Http\Controllers\data_keanggotaan_controller::class, 'document']);
 Route::resource('data_keanggotaan', \App\Http\Controllers\data_keanggotaan_controller::class);
 Route::get('buku/cetakdatabuku', [App\Http\Controllers\BukuController::class, 'document']);        
 Route::resource('buku', \App\Http\Controllers\BukuController::class)->except(['show'])->middleware('auth');
 Route::resource('laporan', \App\Http\Controllers\LaporanController::class)->except(['show'])->middleware('auth');
+
+Route::get('/create', 'LaporanController@create');
+Route::post('/store', 'LaporanController@store');
 
 Route::get('/create', 'BukuController@create');
 Route::post('/store', 'BukuController@store');

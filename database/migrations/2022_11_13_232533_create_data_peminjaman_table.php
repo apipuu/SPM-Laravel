@@ -15,8 +15,8 @@ class CreateDataPeminjamanTable extends Migration
     {
         Schema::create('data_peminjaman', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('NIK')->constrained('data_keanggotaan');
-            $table->foreignId('kode_buku')->constrained('buku');
+            $table->foreignId('NIK');
+            $table->foreignId('kode_buku');
             $table->string('nama_buku');
             $table->string('status');
             $table->timestamps();

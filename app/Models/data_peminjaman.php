@@ -21,9 +21,7 @@ class data_peminjaman extends Model
         'status' ,
     ];
     protected $attributes = [
-
         'status' => 'Dipinjam',
-
     ];
 
 }
