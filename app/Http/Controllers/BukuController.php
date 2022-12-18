@@ -28,6 +28,21 @@ class BukuController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function indexpengunjung(Request $request)
+    {
+        if ($request->ajax()) {
+            $buku = Buku::all();
+            return datatables()->of($buku)
+                ->toJson();
+        }
+        return view('buku/pengunjung/index');
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response

@@ -8,9 +8,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
 
 class data_laporan extends Model
 {
-    use LogsActivity;
-
-    use HasFactory;
+    use LogsActivity, HasFactory;
     /**
      * The attributes that are mass assignable.
      *
@@ -24,4 +22,12 @@ class data_laporan extends Model
         'isi_laporan',  
         'tanggal_dibuat'
     ];
+
+    protected static $logName = 'Data Laporan';
+    protected static $logFillable = true;
+
+    public function getDescriptionForEvent(string $eventName): string
+    {
+        return $this->name . " {$eventName} Oleh: " . Auth::user()->name;
+    }
 }

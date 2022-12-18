@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Peminjam\BukuController;
+use App\Http\Controllers\Peminjam\data_keanggotaan_controller;
+use App\Http\Controllers\Peminjam\PeminjamanController;
+use App\Http\Controllers\Peminjam\Laporan;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,18 +31,27 @@ Route::get('/home', function() {
 
 Route::get('/pelaporan', function() {
     return view('laporan.create');
-})->name('pelaporan');
+})->name('pelaporan')->middleware(['auth', 'role:pengunjung']);
+
+Route::get('/peminjaman', function() {
+    return view('data_peminjaman.create');
+})->name('peminjaman')->middleware(['auth', 'role:pengunjung']);
 
 Route::resource('users', \App\Http\Controllers\UserController::class);
-Route::resource('data_peminjaman', \App\Http\Controllers\PeminjamanController::class);
-Route::get('data_keanggotaan/cetakdatakeanggotaan', [App\Http\Controllers\data_keanggotaan_controller::class, 'document']);
-Route::resource('data_keanggotaan', \App\Http\Controllers\data_keanggotaan_controller::class);
-Route::get('buku/cetakdatabuku', [App\Http\Controllers\BukuController::class, 'document']);        
-Route::resource('buku', \App\Http\Controllers\BukuController::class)->except(['show'])->middleware('auth');
-Route::resource('laporan', \App\Http\Controllers\LaporanController::class)->except(['show'])->middleware('auth');
+Route::resource('data-peminjaman', \App\Http\Controllers\PeminjamanController::class)->except(['show'])->middleware(['auth', 'role:admin']);
 
-Route::get('/create', 'LaporanController@create');
-Route::post('/store', 'LaporanController@store');
+Route::get('data_keanggotaan/cetakdatakeanggotaan', [App\Http\Controllers\data_keanggotaan_controller::class, 'document'])->middleware(['auth', 'role:admin']);
+Route::resource('data_keanggotaan', \App\Http\Controllers\data_keanggotaan_controller::class)->middleware(['auth', 'role:admin']);
+Route::get('buku/cetakdatabuku', [App\Http\Controllers\BukuController::class, 'document'])->middleware(['auth', 'role:admin']);        
+Route::resource('buku', \App\Http\Controllers\BukuController::class)->except(['show'])->middleware(['auth', 'role:admin']);
+Route::get('pengunjung/buku', [App\Http\Controllers\BukuController::class, 'indexpengunjung'])->middleware(['auth', 'role:pengunjung']);  
+Route::resource('laporan', \App\Http\Controllers\LaporanController::class)->except(['show'])->middleware(['auth', 'role:admin']);
+
+Route::get('/create', 'PeminjamanController@create')->middleware(['auth', 'role:pengunjung']);
+Route::post('/store', 'PeminjamanController@store')->middleware(['auth', 'role:pengunjung']);
+
+Route::get('/create', 'LaporanController@create')->middleware(['auth', 'role:pengunjung']);
+Route::post('/store', 'LaporanController@store')->middleware(['auth', 'role:pengunjung']);
 
 Route::get('/create', 'BukuController@create');
 Route::post('/store', 'BukuController@store');

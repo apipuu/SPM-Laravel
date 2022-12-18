@@ -63,7 +63,7 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
+    'logo' => '<b>SPM</b>',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
@@ -288,37 +288,64 @@ return [
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Menu-Configuration
     |
     */
-
     'menu' => [
         // Navbar items:
-         [
-        'text' => 'Data Anggota',
-        'url'  => '/data_keanggotaan',
-        'icon'  => 'fa fa-users',
-        ],
-
         [
-        'text' => 'Data Buku',
-        'url'  => '/buku',
-        'icon'  => 'fa fa-book',
-        ],
+            'text' => 'Master Data',
+            'icon' => 'fas fa-fw fa-share',
+            'can' => 'admin',
+            'submenu' => [                
+                [
+                    'text' => 'Data Anggota',
+                    'url'  => '/data_keanggotaan',
+                    'icon'  => 'fa fa-users',
+                ],
+            
+                [
+                    'text' => 'Data Buku',
+                    'url'  => '/buku',
+                    'icon'  => 'fa fa-book',
+                ],
+            
+                [
+                    'text' => 'Data Laporan',
+                    'url'  => '/laporan',
+                    'icon'  => 'fa fa-copy',
+                ],
+            
+                [
+                    'text' => 'Data Peminjaman',
+                    'url'  => '/data-peminjaman',
+                    'icon'  => 'fa fa-file-alt',
+                ],
 
-        [
-        'text' => 'Data Laporan',
-        'url'  => '/laporan',
-        'icon'  => 'fa fa-book',
+            ],
         ],
-
-         [
-        'text' => 'Data Peminjaman',
-        'url'  => '/transaksi',
-        'icon'  => 'fa fa-book',
-         ],
+         
         [
-        'text' => 'Buat Laporan',
-        'url'  => '/pelaporan',
-        'icon'  => 'fa fa-envelope',
-        ]
+            'text' => 'Pengunjung',
+            'icon' => 'fas fa-fw fa-users',
+            'can' => 'pengunjung',
+            'submenu' => [                
+                [
+                    'text' => 'Daftar Buku',
+                    'url'  => '/pengunjung/buku',
+                    'icon'  => 'fa fa-book',
+                ],
+        
+                 [
+                    'text' => 'Pinjam Buku',
+                    'url'  => '/peminjaman',
+                    'icon'  => 'fa fa-handshake',
+                ],
+        
+                [
+                    'text' => 'Buat Laporan',
+                    'url'  => '/pelaporan',
+                    'icon'  => 'fa fa-envelope',
+                ]
+            ],
+        ],
 
         // Sidebar items:
         
@@ -344,6 +371,7 @@ return [
         JeroenNoten\LaravelAdminLte\Menu\Filters\ClassesFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\LangFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\DataFilter::class,
+        JeroenNoten\LaravelAdminLte\Menu\Filters\GateFilter::class,
     ],
 
     /*

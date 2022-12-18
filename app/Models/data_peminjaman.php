@@ -8,20 +8,24 @@ use Spatie\Activitylog\Traits\LogsActivity;
 
 class data_peminjaman extends Model
 {
-    use LogsActivity;
-
-    use HasFactory;
+    use LogsActivity, HasFactory;
 
     protected $table = 'data_peminjaman';
     public $timestamps = false;
     protected $fillable = [
         'NIK',
         'kode_buku',
-        'nama_buku',
-        'status' ,
-    ];
-    protected $attributes = [
-        'status' => 'Dipinjam',
+        'nama_buku',  
+        'tanggal_dipinjam',
+        'tanggal_dikembalikan',
+        'status'
     ];
 
+    protected static $logName = 'Data Peminjaman';
+    protected static $logFillable = true;
+
+    public function getDescriptionForEvent(string $eventName): string
+    {
+        return $this->name . " {$eventName} Oleh: " . Auth::user()->name;
+    }
 }

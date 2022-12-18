@@ -19,10 +19,6 @@ class LaporanController extends Controller
         if ($request->ajax()) {
             $laporan = data_laporan::all();
             return datatables()->of($laporan)
-                ->addColumn('action', function ($row) {
-                    $html = '<a href=' . ' class="btn btn-primary btn-small">Detail</a>';
-                    return $html;
-                })
                 ->toJson();
         }
         return view('laporan/index');

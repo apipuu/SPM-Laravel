@@ -7,7 +7,7 @@
 @stop
 
 @section('content')
-    <form action="{{route('data_peminjaman.store')}}" method="post">
+    <form action="{{route('data-peminjaman.store')}}" method="post">
         @csrf
     <div class="row">
         <div class="col-12">
@@ -24,16 +24,11 @@
                         <input type="text" class="form-control @error('kode_buku') is-invalid @enderror" id="exampleInputName" placeholder="kode buku" name="kode_buku" value="{{old('kode_buku')}}">
                         @error('kode_buku') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
-                    <div class="form-group">
-                        <label for="exampleInputName">Nama Buku</label>
-                        <input type="text" class="form-control @error('nama_buku') is-invalid @enderror" id="exampleInputName" placeholder="Nama Belakang" name="nama_buku" value="{{old('nama_buku')}}">
-                        @error('nama_buku') <span class="text-danger">{{$message}}</span> @enderror
-                    </div>
                 </div>
 
                 <div class="card-footer">
-                    <button type="submit" class="btn btn-primary">Simpan</button>
-                    <a href="{{route('data_peminjaman.index')}}" class="btn btn-default">
+                    <button type="submit" class="btn btn-primary">Pinjam</button>
+                    <a href="{{route('data-peminjaman.create')}}" class="btn btn-default">
                         Batal
                     </a>
                 </div>
