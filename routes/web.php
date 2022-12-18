@@ -38,14 +38,14 @@ Route::get('/peminjaman', function() {
 })->name('peminjaman')->middleware(['auth', 'role:pengunjung']);
 
 Route::resource('users', \App\Http\Controllers\UserController::class);
-Route::resource('data-peminjaman', \App\Http\Controllers\PeminjamanController::class)->except(['show'])->middleware(['auth', 'role:admin']);
+Route::resource('data-peminjaman', \App\Http\Controllers\PeminjamanController::class)->except(['show']);
 
 Route::get('data_keanggotaan/cetakdatakeanggotaan', [App\Http\Controllers\data_keanggotaan_controller::class, 'document'])->middleware(['auth', 'role:admin']);
 Route::resource('data_keanggotaan', \App\Http\Controllers\data_keanggotaan_controller::class)->middleware(['auth', 'role:admin']);
 Route::get('buku/cetakdatabuku', [App\Http\Controllers\BukuController::class, 'document'])->middleware(['auth', 'role:admin']);        
-Route::resource('buku', \App\Http\Controllers\BukuController::class)->except(['show'])->middleware(['auth', 'role:admin']);
+Route::resource('buku', \App\Http\Controllers\BukuController::class)->except(['show']);
 Route::get('pengunjung/buku', [App\Http\Controllers\BukuController::class, 'indexpengunjung'])->middleware(['auth', 'role:pengunjung']);  
-Route::resource('laporan', \App\Http\Controllers\LaporanController::class)->except(['show'])->middleware(['auth', 'role:admin']);
+Route::resource('laporan', \App\Http\Controllers\LaporanController::class)->except(['show']);
 
 Route::get('/create', 'PeminjamanController@create')->middleware(['auth', 'role:pengunjung']);
 Route::post('/store', 'PeminjamanController@store')->middleware(['auth', 'role:pengunjung']);
