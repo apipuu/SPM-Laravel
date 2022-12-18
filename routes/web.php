@@ -46,7 +46,10 @@ Route::post('/store', 'BukuController@store');
 Route::get('/create', 'data_keanggotaan_controller@create');
 Route::post('/store', 'data_keanggotaan_controller@store');
 
-Route::get('sending-queue-emails', [App\Http\Controllers\TestQueueEmails::class,'sendTestEmails']);
-
+// Route::get('sending-queue-emails', function(){$details['email'] = 'afifulutfianto@gmail.com';
+//     dispatch(new App\Jobs\TestSendEmail($details));
+//     return response()->json(['message'=>'Mail Send Success!']);
+// });
+// [App\Http\Controllers\TestQueueEmails::class,'sendTestEmails'])->name('emailsend');
 // Route::get('/transaksi', [App\Http\Controllers\PeminjamanController::class, 'create']);
 // Route::post('/transaksi/store', [App\Http\Controllers\PeminjamanController::class, 'store']);

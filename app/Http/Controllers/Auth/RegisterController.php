@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Spatie\Permission\Traits\HasRoles;
+use App\Http\Controllers\TestQueueEmails;
+use App\Jobs\TestSendEmail;
+use App\Mail\TestHelloEmail;
 
 class RegisterController extends Controller
 {
@@ -68,6 +71,8 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         if(DB::table('data_keanggotaan')->where('NIK', $data['NIK'])->doesntExist()) return redirect()->route('/register');
+        
+        dispatch(new \App\Jobs\TestSendEmail($data));
 
         return User::create([
             'NIK' => $data['NIK'],

@@ -3,25 +3,27 @@
 namespace App\Jobs;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Contracts\Queue\ShouldBeUnique;
+use Illuminate\Contracts\Queue\ShouldQueue;
+
 use App\Mail\TestHelloEmail;
+use Illuminate\Support\Facades\Mail;
 
 class TestSendEmail implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-
+    protected $details;
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($details)
     {
-        //
+        $this->details=$details;
     }
 
     /**
@@ -32,7 +34,6 @@ class TestSendEmail implements ShouldQueue
     public function handle()
     {
         $email = new TestHelloEmail();
-        Mail::to('afif.lutfianto.tif21@polban.ac.id')->send($email);
-        Mail::to('rizq.hilal.tif21@polban.ac.id')->send($email);
+        Mail::to($this->details['email'])->send($email);
     }
 }
