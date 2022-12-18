@@ -123,4 +123,17 @@ class PeminjamanController extends Controller
     {
         //
     }
+
+    // public function cekBuku($jumlah_buku){
+    //     if ($jumlah_buku < 0) {
+    //         throw new Exception("Jumlah buku tidak bisa kurang dari 0");
+    //     return true;
+    // }
+    
+    // try {
+    //     jumlah_buku(1);
+    // } catch (\Throwable $b) {
+    //     echo 'Message: ' .$b->getMessage();
+    // }
+    // }
 }

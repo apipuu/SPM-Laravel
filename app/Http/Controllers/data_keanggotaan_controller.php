@@ -16,7 +16,7 @@ class data_keanggotaan_controller extends Controller
             return datatables()->of($data_keanggotaan)
                 ->addColumn('action', function ($row) {
                     $html = '<a href=' . route('data_keanggotaan.edit', $row) . ' class="btn btn-warning btn-xs">Edit</a>';
-                    $html .= '<a href=' . route('buku.destroy', $row) . ' class="btn btn-danger btn-xs" onclick="notificationBeforeDelete(event, this)"> Delete </a>';
+                    $html .= '<a href=' . route('data_keanggotaan.destroy', $row) . ' class="btn btn-danger btn-xs" onclick="notificationBeforeDelete(event, this)"> Delete </a>';
                     return $html;
                 })
                 ->toJson();
