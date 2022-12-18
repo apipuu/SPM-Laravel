@@ -291,8 +291,9 @@ return [
     'menu' => [
         // Navbar items:
         [
-            'text'    => 'Master Data',
-            'icon'    => 'fas fa-fw fa-share',
+            'text' => 'Master Data',
+            'icon' => 'fas fa-fw fa-share',
+            'can' => 'admin',
             'submenu' => [                
                 [
                     'text' => 'Data Anggota',
@@ -322,8 +323,9 @@ return [
         ],
          
         [
-            'text'    => 'Pengunjung',
-            'icon'    => 'fas fa-fw fa-users',
+            'text' => 'Pengunjung',
+            'icon' => 'fas fa-fw fa-users',
+            'can' => 'pengunjung',
             'submenu' => [                
                 [
                     'text' => 'Daftar Buku',
@@ -369,6 +371,7 @@ return [
         JeroenNoten\LaravelAdminLte\Menu\Filters\ClassesFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\LangFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\DataFilter::class,
+        JeroenNoten\LaravelAdminLte\Menu\Filters\GateFilter::class,
     ],
 
     /*

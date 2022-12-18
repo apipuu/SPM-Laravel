@@ -53,9 +53,6 @@ Route::post('/store', 'PeminjamanController@store')->middleware(['auth', 'role:p
 Route::get('/create', 'LaporanController@create')->middleware(['auth', 'role:pengunjung']);
 Route::post('/store', 'LaporanController@store')->middleware(['auth', 'role:pengunjung']);
 
-Route::get('/create', 'LaporanController@create');
-Route::post('/store', 'LaporanController@store');
-
 Route::get('/create', 'BukuController@create');
 Route::post('/store', 'BukuController@store');
 
