@@ -10,7 +10,7 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
-                <div class="card-body">
+                <div class="card-body table-responsive p-0">
 
                     <a href="{{route('data_keanggotaan.create')}}" class="btn btn-primary mb-2">
                         Tambah Anggota
@@ -19,7 +19,7 @@
                         Cetak Data
                     </a>
 
-                    <table class="table table-hover table-bordered table-stripped" id="data_keanggotaan">
+                    <table class="table table-hover text-wrap" id="data_keanggotaan">
                         <thead>
                         <tr>
                             <th>NIK</th>
