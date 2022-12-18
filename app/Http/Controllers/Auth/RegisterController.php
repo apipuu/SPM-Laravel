@@ -7,7 +7,9 @@ use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Spatie\Permission\Traits\HasRoles;
 
 class RegisterController extends Controller
 {
@@ -22,7 +24,7 @@ class RegisterController extends Controller
     |
     */
 
-    use RegistersUsers;
+    use RegistersUsers, HasRoles;
 
     /**
      * Where to redirect users after registration.
@@ -50,6 +52,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
+            'NIK' => ['required', 'int', 'min:16'],
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
@@ -64,10 +67,13 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        if(DB::table('data_keanggotaan')->where('NIK', $data['NIK'])->doesntExist()) return redirect()->route('/register');
+
         return User::create([
+            'NIK' => $data['NIK'],
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-        ]);
+        ])->assignRole('pengunjung');
     }
 }

@@ -15,11 +15,12 @@ class CreateDataPeminjamanTable extends Migration
     {
         Schema::create('data_peminjaman', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('NIK')->constrained('data_keanggotaan');
-            $table->foreignId('kode_buku')->constrained('buku');
+            $table->foreignId('NIK');
+            $table->string('kode_buku');
             $table->string('nama_buku');
+            $table->date('tanggal_dipinjam', strtotime('tanggal_dipinjam'));
+            $table->date('tanggal_dikembalikan', strtotime('tanggal_dikembalikan'));
             $table->string('status');
-            $table->timestamps();
         });
     }
 

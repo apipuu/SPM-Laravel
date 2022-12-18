@@ -288,31 +288,62 @@ return [
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Menu-Configuration
     |
     */
-
     'menu' => [
         // Navbar items:
-         [
-        'text' => 'Data Anggota',
-        'url'  => '/data_keanggotaan',
-        'icon'  => 'fa fa-users',
-        ],
-
         [
-        'text' => 'Data Buku',
-        'url'  => '/buku',
-        'icon'  => 'fa fa-book',
-        ],
+            'text'    => 'Master Data',
+            'icon'    => 'fas fa-fw fa-share',
+            'submenu' => [                
+                [
+                    'text' => 'Data Anggota',
+                    'url'  => '/data_keanggotaan',
+                    'icon'  => 'fa fa-users',
+                ],
+            
+                [
+                    'text' => 'Data Buku',
+                    'url'  => '/buku',
+                    'icon'  => 'fa fa-book',
+                ],
+            
+                [
+                    'text' => 'Data Laporan',
+                    'url'  => '/laporan',
+                    'icon'  => 'fa fa-copy',
+                ],
+            
+                [
+                    'text' => 'Data Peminjaman',
+                    'url'  => '/data-peminjaman',
+                    'icon'  => 'fa fa-file-alt',
+                ],
 
-        [
-        'text' => 'Data Laporan',
-        'url'  => '/laporan',
-        'icon'  => 'fa fa-book',
+            ],
         ],
-         [
-        'text' => 'Data Peminjaman',
-        'url'  => '/transaksi',
-        'icon'  => 'fa fa-book',
-        ]
+         
+        [
+            'text'    => 'Pengunjung',
+            'icon'    => 'fas fa-fw fa-users',
+            'submenu' => [                
+                [
+                    'text' => 'Daftar Buku',
+                    'url'  => '/pengunjung/buku',
+                    'icon'  => 'fa fa-book',
+                ],
+        
+                 [
+                    'text' => 'Pinjam Buku',
+                    'url'  => '/peminjaman',
+                    'icon'  => 'fa fa-handshake',
+                ],
+        
+                [
+                    'text' => 'Buat Laporan',
+                    'url'  => '/pelaporan',
+                    'icon'  => 'fa fa-envelope',
+                ]
+            ],
+        ],
 
         // Sidebar items:
         

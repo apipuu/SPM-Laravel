@@ -15,11 +15,10 @@ class CreateDataLaporanTable extends Migration
     {
         Schema::create('laporan', function (Blueprint $table) {
             $table->id();
-            $table->string('NIK');
+            $table->foreignId('NIK');
             $table->string('nama');
             $table->string('isi_laporan');
             $table->date('tanggal_dibuat', strtotime('tanggal_dibuat'));
-            
         });
     }
 

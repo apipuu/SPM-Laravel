@@ -22,7 +22,6 @@
                     <table class="table table-hover table-bordered table-stripped" id="data_keanggotaan">
                         <thead>
                         <tr>
-                            <th>No.</th>
                             <th>NIK</th>
                             <th>Nama Depan</th>
                             <th>Nama Belakang</th>
@@ -67,7 +66,6 @@
                     processing: true,
                     aaSorting:[[0,"asc"]],
                     columns: [
-                        {data: 'id', name: 'id'},
                         {data: 'NIK', name: 'NIK'},
                         {data: 'nama_depan', name: 'nama_depan'},
                         {data: 'nama_belakang', name: 'nama_belakang'},

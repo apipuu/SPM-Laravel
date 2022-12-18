@@ -19,6 +19,24 @@
 
         {{-- Name field --}}
         <div class="input-group mb-3">
+            <input type="text" name="NIK" class="form-control @error('NIK') is-invalid @enderror"
+                   value="{{ old('NIK') }}" placeholder="NIK" autofocus>
+
+            <div class="input-group-append">
+                <div class="input-group-text">
+                    <span class="fas fa-user {{ config('adminlte.classes_auth_icon', '') }}"></span>
+                </div>
+            </div>
+
+            @error('NIK')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+        </div>
+
+        {{-- Name field --}}
+        <div class="input-group mb-3">
             <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
                    value="{{ old('name') }}" placeholder="{{ __('adminlte::adminlte.full_name') }}" autofocus>
 
